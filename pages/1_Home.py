@@ -149,7 +149,14 @@ c2.metric("Columns", len(df.columns))
 c3.metric("Hotel Types", df["hotel"].nunique())
 
 # Correct column = country
-c4.metric("Countries", df["country"].nunique())
+if "country" in df.columns:
+    countries = df["country"].nunique()
+elif "Country" in df.columns:
+    countries = df["Country"].nunique()
+else:
+    countries = 0
+
+c4.metric("Countries", countries)
 
 st.write("### Sample Data")
 
